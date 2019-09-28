@@ -1,0 +1,1 @@
+while (std::getline(file, line, '\0')){for(char ascii : line){std::cout<<(int)ascii << " ";}}

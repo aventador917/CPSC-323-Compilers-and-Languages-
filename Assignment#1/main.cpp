@@ -15,8 +15,9 @@ Assignment#1
 
 using namespace std;
 
-bool isLetter(char ch) {//identifier
-	if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+bool isLetter(char ch) 
+{//identifier
+	if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch =='$' )
 	{
 		return true;
 	}
@@ -26,7 +27,8 @@ bool isLetter(char ch) {//identifier
 	}
 }
 
-bool isDigit(char ch) {//isDigit 
+bool isDigit(char ch) 
+{//isDigit 
 	if (ch >= '0' && ch <= '9')
 	{
 		return true;
@@ -37,8 +39,9 @@ bool isDigit(char ch) {//isDigit
 	}
 }
 
-bool isOperators(char ch) {// isOperators 
-	if (ch == '+' || ch == '*' || ch == '-' || ch == '/' || ch == '=' || ch == ':' || ch == '<' || ch == '>')
+bool isOperators(char ch) 
+{// isOperators 
+	if (ch == '+' || ch == '*' || ch == '-' || ch == '/' || ch == '=' || ch == ':' || ch == '<' || ch == '>' || ch =='!')
 	{
 		return true;
 	}
@@ -49,8 +52,9 @@ bool isOperators(char ch) {// isOperators
 }
 bool isDelimiter(char ch) 
 {// is separator
-	if (ch == ',' || ch == ';' || ch == '.' || ch == '(' || ch == ')' || ch == '[' || ch == ']' || ch == '{' || ch == '}' || ch == '#' || ch == '\\'||ch == '"' || ch == '\'')
+	if (ch == ',' || ch == ';' || ch == '.' || ch == '(' || ch == ')' || ch == '[' || ch == ']' || ch == '{' || ch == '}' || ch == '#' || ch == '\\'||ch == '"' || ch == '\'' )
 	{
+	
 		return true;
 	}
 	else
@@ -58,8 +62,9 @@ bool isDelimiter(char ch)
 		return false;
 	}
 }
-bool isBlank(char ch) {
-	if (ch == ' ' || ch == '\t')
+bool isBlank(char ch) 
+{
+	if (ch == ' ' || ch == '\t' || ch == '\n')
 	{
 		return true;
 	}
@@ -207,34 +212,34 @@ void fsm(char sourceCode[256])
 	}
 }
 
+
 int main()
 {
-	string fileName;
+	char str[256];
 	char originCode[256] = "";
-	
+	char *buffer = originCode;
+
 	cout << "TestCase1.txt" << endl;
 	cout << "TestCase2.txt" << endl;
 	cout << "TestCase3.txt" << endl << endl;
 
 	cout << "Please input the file you want to test: ";
-	cin >> fileName;
+	cin.get(str, 256);
 	cout << endl;
 	
-
-	fstream outFile;
-
-	outFile.open(fileName, ios::in);
-	
-	while (!outFile.eof())
+	ifstream is(str);
+	int i = 0;
+	while (is.get(originCode[i]))
 	{
-		outFile.getline(originCode, 256,'\n');
+		cout << originCode[i];
+		++i;
 	}
-	outFile.close();
 
-
+	cout << endl << endl;
+	
 	fsm(originCode);
 	
-	cout << "See the result in output.txt" << endl;
+	cout << "See the lexical result in output.txt" << endl;
 	system("pause");
 	return 0;
 }

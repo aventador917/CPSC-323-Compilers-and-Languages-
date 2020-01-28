@@ -1,0 +1,14 @@
+%%
+int a,b; !declarations!
+boolean val;
+int omg;
+
+val = false;
+
+omg = 5;
+while ( omg > 3 ) {
+    if ( val ^= true )
+	a = 4;
+    endif
+    omg = omg - 1;
+}
